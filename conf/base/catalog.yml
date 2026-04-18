@@ -1,0 +1,16 @@
+## --------------------------------------------------------------------
+## Base Operaciones
+## --------------------------------------------------------------------
+
+presupuesto_proyecciones_growth_ventas:
+  type: pandas.ExcelDataset
+  filepath: data/01_raw/presupuesto_proyecciones_growth_ventas.xlsx
+  load_args:
+      engine: openpyxl
+      # 1. Leer columnas de la A a la AL
+      #usecols: "A:AL"
+      # 2. Saltar las siete primeras fila (empieza en la fila 2)
+      skiprows: 0
+      # 3. Leer las primeras 6 hojas (índices 0 al 5)
+      #sheet_name: [6,7, 8, 9, 10, 11, 12,13,14,15]
+      sheet_name: ['CENTRAL']
