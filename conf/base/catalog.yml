@@ -1,10 +1,18 @@
 ## --------------------------------------------------------------------
-## Base Operaciones
+## 01 Raw
 ## --------------------------------------------------------------------
 
-presupuesto_proyecciones_growth_ventas:
+# Calendario Académico
+central_calaca:
   type: pandas.ExcelDataset
-  filepath: data/01_raw/presupuesto_proyecciones_growth_ventas.xlsx
+  filepath: data/01_raw/central_calendario_academico.xlsx
+  load_args:
+    engine: openpyxl
+
+# Base Estado de los Estudiantes
+central_estaca:
+  type: pandas.ExcelDataset
+  filepath: data/01_raw/Base de Operaciones.xlsx
   load_args:
       engine: openpyxl
       # 1. Leer columnas de la A a la AL
@@ -14,3 +22,20 @@ presupuesto_proyecciones_growth_ventas:
       # 3. Leer las primeras 6 hojas (índices 0 al 5)
       #sheet_name: [6,7, 8, 9, 10, 11, 12,13,14,15]
       sheet_name: ['CENTRAL']
+
+
+## --------------------------------------------------------------------
+## 02 Intermediate
+## --------------------------------------------------------------------
+
+central_calendario_extendido:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/central_calendario_extendido.parquet
+
+central_estaca_sd:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/central_estaca_sin_duplicados.parquet
+
+central_estaca_cd:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/central_estaca_con_duplicados.parquet
