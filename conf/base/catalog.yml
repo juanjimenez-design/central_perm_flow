@@ -48,11 +48,24 @@ central_estaca_cd:
 ## 03 Primary
 ## --------------------------------------------------------------------
 
-bajas_calendario_academico:
+central_bajas_calendario_academico:
   type: pandas.ParquetDataset
-  filepath: data/03_primary/bajas_calendario_academico.parquet
+  filepath: data/03_primary/central_bajas_calendario_academico.parquet
+  save_args:
+    index: false
 
-graduados_calendario_academico:
+central_graduados_calendario_academico:
   type: pandas.ParquetDataset
-  filepath: data/03_primary/graduados_calendario_academico.parquet
+  filepath: data/03_primary/central_graduados_calendario_academico.parquet
+  save_args:
+    index: false
 
+central_activos_calendario:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/central_activos_calendario.parquet
+  save_args:
+    index: false
+
+central_universo_calendario_academico:
+  type: pandas.ParquetDataset
+  filepath: data/04_feature/central_universo_calendario_academico.parquet

@@ -34,6 +34,75 @@ graduados_calac:
   
   # Parámetros de la función
   graduation_col_gi: "gi"
-  graduation_fallback_weeks: 32
+  graduation_fallback_weeks: None
   graduation_join_keys_left: ["fecha_ingreso", "max_semana_teorica"]
   graduation_join_keys_right: ["fecha_ingreso", "semana_acumulada"]
+
+activos_calac:
+  col_di: "di"
+  col_gi: "gi"
+  join_keys_left: "fecha_activo"
+  join_keys_right: "fecha_inicio"
+  group_key: "fecha_ingreso"
+
+# Configuración de Estructura de Datos
+orden_columnas_universo:
+  # 1. Identificación
+  - identificacion
+  - codigo_sis
+  - id_inconcert
+  - nombres
+  - usuario_institucional
+  
+  # 2. Información Académica
+  - alianza
+  - cohorte
+  - cohorte_inicial
+  - cohorte_actual
+  - nivel
+  - nivel_academico
+  - programa
+  - estado
+  - bloque
+  - descuentos
+  
+  # 3. Fechas de Hitos
+  - fecha_ingreso
+  - fecha_de_registro
+  - fecha_de_baja_t
+  - fecha_de_baja_d
+  - fecha_baja
+  - fecha_de_reingreso
+  - fecha_grado
+  - fecha_activo
+  
+  # 4. Contexto de Baja
+  - tipo_baja
+  - motivo_baja
+  - submotivo_baja
+  - comentarios
+  
+  # 5. Calendario Académico (Atributos Temporales)
+  - periodo_raw
+  - fecha_inicio
+  - fecha_fin
+  - shifted_fecha_inicio
+  - semana
+  - semana_acumulada
+  - month
+  - mes_academico
+  - anio_gregoriano
+  - mes_gregoriano
+  - student_journey
+  - tipo
+  
+  # 6. Indicadoras y Métricas Finales
+  - max_semana_teorica
+  - exito_estudiantil
+  - etapa_studen_journey
+  - ai
+  - di
+  - gi
+  - engi
+  - ci
+  
