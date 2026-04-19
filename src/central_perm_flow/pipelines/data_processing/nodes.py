@@ -276,8 +276,25 @@ def central_preprocessing_calaca(
     col_ordenadas: list
 ) -> pd.DataFrame:
     """
-    Transforma el calendario académico para crear la línea de tiempo 
-    del journey del estudiante.
+    Estandariza el calendario académico como línea de tiempo para el análisis de sobrevivencia.
+
+    Transformaciones principales:
+    1.  **Reloj Académico**: Calcula 'semana_acumulada' y 'month' relativo por cohorte (Tiempo T=0).
+    2.  **Anclaje Temporal**: Identifica la 'fecha_ingreso' mínima por cohorte inicial.
+    3.  **Ventanas de Eventos**: Genera 'shifted_fecha_inicio' para delimitar intervalos de riesgo.
+    4.  **Estacionalidad**: Extrae 'month_gregoriano' para capturar efectos del calendario civil.
+    5.  **Segmentación**: Clasifica el 'student_journey' según umbrales de meses parametrizados.
+
+    Args:
+        central_calendario: Datos crudos de periodos y semanas.
+        col_fechas/col_sort: Parámetros de limpieza y ordenamiento.
+        journey_labels/thresholds: Lógica de negocio para etapas del estudiante.
+        col_ordenadas: Estructura final de columnas según el catálogo.
+
+    Returns:
+        pd.DataFrame: Timeline enriquecida lista para cruce con eventos de baja.
+        pd.DataFrame: Timeline enriquecida lista para cruce con eventos de baja hasta el día de hoy.
+
     """
     # 1. Limpieza inicial usando tus nodos base
     central_calendario = clean_column_names(central_calendario)
@@ -319,18 +336,18 @@ def central_preprocessing_calaca(
     
     df_ext['student_journey'] = np.select(condiciones, journey_labels, default='unknown')
 
-    # 7. Mes gregoriano
-    df_ext['mes_gregoriano'] = df_ext[col_fecha_fin_sem].dt.month 
-
+    # 7. Año y Mes gregoriano
+    df_ext['mes_gregoriano'] = df_ext[col_fecha_fin_sem].dt.month
+    df_ext['anio_gregoriano'] = df_ext[col_fecha_fin_sem].dt.year
+     
     # 8. Orden de las columnas 
     df_ext = df_ext.loc[:, col_ordenadas]
-    return df_ext.reset_index(drop=True)
+    
+    # 9. Calendario académico hasta la fecha actual
+    mask_fechas_uptoday = df_ext[col_fecha_fin_sem] <= pd.Timestamp.now()
+    df_ext_uptoday = df_ext.loc[mask_fechas_uptoday].copy()
 
-
-
-
-
-
+    return df_ext.reset_index(drop=True),df_ext_uptoday.reset_index(drop=True)
 
 
 #-----------------------------------------------------------------------------#
@@ -342,11 +359,29 @@ def central_preprocessing_estaca(
     central_col_fechas: list,
     central_col_emails: list,
     central_col_dd: list,
-    central_col_sort: list
+    central_col_sort: list,
+    central_niveles_academicos: dict,
+    central_estaca_column_order: list
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
-    Realiza la limpieza, conversión de fechas y gestión de duplicados
-    de la tabla central_hisaca.
+    Procesa, limpia y estandariza los datos maestros de estudiantes (ESTACA).
+
+    Transformaciones principales:
+    1.  **Limpieza y Tipificación**: Normaliza nombres de columnas, correos y asegura formato datetime.
+    2.  **Agrupación Académica**: Homologa niveles (pregrado/posgrado) mediante mapeo paramétrico.
+    3.  **Gestión de Calidad**: Identifica y separa registros duplicados para asegurar integridad en el análisis.
+    4.  **Estructuración**: Ordena y filtra el dataset según la jerarquía definida en los parámetros.
+
+    Args:
+        central_estaca: Diccionario de DataFrames (raw data).
+        central_col_fechas/emails/dd: Listas de columnas para normalización específica.
+        central_niveles_academicos: Diccionario de mapeo para niveles educativos.
+        central_estaca_column_order: Estructura final de columnas para el catálogo.
+
+    Returns:
+        Tuple[pd.DataFrame, pd.DataFrame]: 
+            1. Dataset de estudiantes limpio y estandarizado.
+            2. Dataset de registros duplicados o descartados para auditoría.
     """
     # 1. Limpieza de nombres de columnas (asumiendo que nodes.clean_column_names ya existe)
     # Si clean_column_names es un método importado, úsalo directamente:
@@ -382,6 +417,18 @@ def central_preprocessing_estaca(
     mask_graduados = central_estaca_sd['estado'].isin(['egresado no graduado'])
     mask_fecha_graduados= central_estaca_sd['fecha_grado'].notna()
     central_estaca_sd['gi'] = np.where(mask_graduados & mask_fecha_graduados , 1, 0)
+    # 7. Nivel académico
+    central_estaca_sd['nivel_academico'] = (
+        central_estaca_sd['nivel']
+        .str.lower()
+        .str.strip()
+        .map(central_niveles_academicos)
+    )
+    # 8. Creación de  la columna fecha ingreso
+    central_estaca_sd['fecha_ingreso'] = central_estaca_sd['cohorte']
+    central_estaca_cd['fecha_ingreso'] = central_estaca_cd['cohorte']
+    # 9. Orden de las columnas
+    central_estaca_sd = central_estaca_sd.loc[:,central_estaca_column_order]
     
     return central_estaca_sd, central_estaca_cd
 

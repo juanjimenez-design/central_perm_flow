@@ -22,8 +22,8 @@ def create_pipeline(**kwargs) -> Pipeline:
                     "journey_thresholds": "params:data_processing_calaca.central_calaca_journey_thresholds",
                     "col_ordenadas": "params:data_processing_calaca.central_calaca_column_order"
                 },
-                outputs="central_calendario_extendido",
-                name="preprocessing_calaca_node"
+                outputs=["central_calendario_extendido","central_calendario_extendido_uptoday"],
+                name="node_preprocessing_calaca"
             ),
             node(
                 func=central_preprocessing_estaca,
@@ -33,6 +33,8 @@ def create_pipeline(**kwargs) -> Pipeline:
                     "central_col_emails": "params:data_processing_estaca.central_col_emails",
                     "central_col_dd": "params:data_processing_estaca.central_col_dd",
                     "central_col_sort": "params:data_processing_estaca.central_col_sort",
+                    "central_niveles_academicos": "params:data_processing_estaca.central_niveles_academicos",
+                    "central_estaca_column_order": "params:data_processing_estaca.central_estaca_column_order",
                 },
                 outputs=["central_estaca_sd", "central_estaca_cd"],
                 name="node_central_preprocessing_estaca",

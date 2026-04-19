@@ -1,0 +1,39 @@
+# This is a boilerplate parameters config generated for pipeline 'calac_activos_baj_grad'
+# using Kedro 1.2.0.
+#
+# Documentation for this file format can be found in "Parameters"
+# Link: https://docs.kedro.org/en/1.2.0/configuration/parameters.html
+
+
+# parameters/data_processing.yml
+bajas_calac:
+  central_col_fechadef: 'fecha_de_baja_d'
+  central_col_fechatemp: 'fecha_de_baja_t'
+  # Llaves para el merge temporal
+  merge_left_on: fecha_baja
+  merge_right_on: fecha_inicio
+  # Agrupador para que el tiempo se reinicie por cohorte
+  central_calaca_col_cohorte_inicial: fecha_ingreso
+  # Columnas para ordenar los datos 
+  central_calaca_col_sort:
+    - 'fecha_ingreso'
+    - 'fecha_inicio'
+    - 'semana_acumulada'
+
+graduados_calac:
+  # Configuración de Duraciones
+  dict_niveles_duracion:
+    maestria:
+      default: { semanas: 48, meses: 12, bloques: 6, periodos: 3 }
+      analitica de datos: { semanas: 64, meses: 16, bloques: 8, periodos: 4 }
+    especializacion:
+      default: { semanas: 32, meses: 8, bloques: 4, periodos: 2 }
+    pregrado:
+      default: { semanas: 128, meses: 32, bloques: 16, periodos: 8 }
+      derecho: { semanas: 144, meses: 36, bloques: 18, periodos: 9 }
+  
+  # Parámetros de la función
+  graduation_col_gi: "gi"
+  graduation_fallback_weeks: 32
+  graduation_join_keys_left: ["fecha_ingreso", "max_semana_teorica"]
+  graduation_join_keys_right: ["fecha_ingreso", "semana_acumulada"]

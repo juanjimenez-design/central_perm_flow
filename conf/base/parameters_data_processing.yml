@@ -30,6 +30,47 @@ data_processing_estaca:
   central_col_sort:
     - codigo_sis
 
+  central_niveles_academicos:
+    maestria: posgrado
+    especializacion: posgrado
+    pregrado: pregrado
+
+  central_estaca_column_order:
+    # Identificación básica
+    - identificacion
+    - codigo_sis
+    - id_inconcert
+    - nombres
+    - usuario_institucional
+    # Datos de ingreso y cohorte
+    - alianza
+    - cohorte
+    - fecha_ingreso
+    - fecha_de_registro
+    # Nivel y programa
+    - nivel
+    - nivel_academico
+    - programa
+    # Estados y eventos (Crucial para sobrevivencia)
+    - estado
+    - fecha_de_baja_t
+    - fecha_de_baja_d
+    - tipo_baja
+    - motivo_baja
+    - submotivo_baja
+    - comentarios
+    # Retorno y éxito
+    - fecha_de_reingreso
+    - fecha_grado
+    - exito_estudiantil
+    # Dimensiones adicionales
+    - etapa_studen_journey
+    - descuentos
+    - di
+    - gi
+  
+
+
 # --- Parámetros para el Calendario Académico (CALACA) ---
 data_processing_calaca:
   # Definición de columnas de entrada y procesamiento
@@ -60,11 +101,11 @@ data_processing_calaca:
 
   # Orden final de las columnas en el dataset extendido
   central_calaca_column_order:
+    - periodo_raw    
     - cohorte
     - cohorte_inicial
     - fecha_ingreso
     - cohorte_actual
-    - periodo_raw
     - bloque
     - fecha_inicio
     - fecha_fin
@@ -73,6 +114,7 @@ data_processing_calaca:
     - semana_acumulada
     - month
     - mes_academico
+    - anio_gregoriano
     - mes_gregoriano
     - student_journey
     - tipo

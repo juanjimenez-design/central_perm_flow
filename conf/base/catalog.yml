@@ -32,6 +32,10 @@ central_calendario_extendido:
   type: pandas.ParquetDataset
   filepath: data/02_intermediate/central_calendario_extendido.parquet
 
+central_calendario_extendido_uptoday:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/central_calendario_extendido_uptoday.parquet
+
 central_estaca_sd:
   type: pandas.ParquetDataset
   filepath: data/02_intermediate/central_estaca_sin_duplicados.parquet
@@ -39,3 +43,16 @@ central_estaca_sd:
 central_estaca_cd:
   type: pandas.ParquetDataset
   filepath: data/02_intermediate/central_estaca_con_duplicados.parquet
+
+## --------------------------------------------------------------------
+## 03 Primary
+## --------------------------------------------------------------------
+
+bajas_calendario_academico:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/bajas_calendario_academico.parquet
+
+graduados_calendario_academico:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/graduados_calendario_academico.parquet
+
