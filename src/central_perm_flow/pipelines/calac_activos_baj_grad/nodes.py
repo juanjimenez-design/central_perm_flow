@@ -84,7 +84,7 @@ def momento_baja(
         bajas_calac.loc[pre_calendar_mask, 'month'] = 0
         bajas_calac.loc[pre_calendar_mask, 'student_journey'] = 'pre-onboarding'
         # Asignamos la cohorte_inicial del estudiante para mantener consistencia
-        bajas_calac.loc[pre_calendar_mask, 'mes_label'] = 'm0'
+        bajas_calac.loc[pre_calendar_mask, 'mes_academico'] = 'm0'
 
     # 4. Orden final para auditoría
     bajas_calac.sort_values(by= sort_cols, inplace=True)
