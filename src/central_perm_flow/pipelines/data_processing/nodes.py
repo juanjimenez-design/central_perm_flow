@@ -372,6 +372,16 @@ def central_preprocessing_estaca(
         subset=central_col_dd, 
         col_ordenar=central_col_sort
     )
-
+    
+    # 5. Indicadora de deserción
+    mask_bajas = central_estaca_sd['estado'].isin(['baja temporal', 'baja definitiva'])
+    mask_bajas_definitiva = central_estaca_sd['fecha_de_baja_d'].notna()
+    mask_bajas_temporal = central_estaca_sd['fecha_de_baja_t'].notna()
+    central_estaca_sd['di'] = np.where(mask_bajas & (mask_bajas_definitiva|mask_bajas_temporal) , 1, 0)
+    # 6. Indicadora de graduación
+    mask_graduados = central_estaca_sd['estado'].isin(['egresado no graduado'])
+    mask_fecha_graduados= central_estaca_sd['fecha_grado'].notna()
+    central_estaca_sd['gi'] = np.where(mask_graduados & mask_fecha_graduados , 1, 0)
+    
     return central_estaca_sd, central_estaca_cd
 
