@@ -23,6 +23,16 @@ central_estaca:
       #sheet_name: [6,7, 8, 9, 10, 11, 12,13,14,15]
       sheet_name: ['CENTRAL']
 
+# Central Caracterizacion
+central_caracterizacion:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/caracterizacion/solicitud_completa-central-2026-04-20_10-50-48.csv
+  load_args:
+    sep: ","        # O ";" según tu archivo
+    encoding: "utf-8"
+  
+
+      
 
 ## --------------------------------------------------------------------
 ## 02 Intermediate
