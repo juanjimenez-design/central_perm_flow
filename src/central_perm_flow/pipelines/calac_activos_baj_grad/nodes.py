@@ -288,7 +288,7 @@ def consolidar_estados_calac(
     if 'di' in universo.columns:
         universo['di'] = universo['di'].fillna(0).astype(int)
     if 'gi' in universo.columns:
-        universo['gi'] = universo['di'].fillna(0).astype(int)
+        universo['gi'] = universo['gi'].fillna(0).astype(int)
 
     # 2. Censuras
     universo['ci'] = universo['gi'] + universo['engi']
