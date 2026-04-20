@@ -66,6 +66,6 @@ central_activos_calendario:
   save_args:
     index: false
 
-central_universo_calendario_academico:
+central_estados_calac:
   type: pandas.ParquetDataset
-  filepath: data/04_feature/central_universo_calendario_academico.parquet
+  filepath: data/04_feature/central_estados_calac.parquet

@@ -344,7 +344,7 @@ def central_preprocessing_calaca(
     df_ext = df_ext.loc[:, col_ordenadas]
     
     # 9. Calendario académico hasta la fecha actual
-    mask_fechas_uptoday = df_ext[col_fecha_fin_sem] <= pd.Timestamp.now()
+    mask_fechas_uptoday = df_ext[col_fecha_ini_sem] <= pd.Timestamp.now()
     df_ext_uptoday = df_ext.loc[mask_fechas_uptoday].copy()
 
     return df_ext.reset_index(drop=True),df_ext_uptoday.reset_index(drop=True)

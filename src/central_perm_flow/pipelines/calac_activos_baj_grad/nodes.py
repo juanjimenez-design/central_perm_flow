@@ -251,22 +251,31 @@ def momento_activos(
 
     return df_activos_cal
 
-
-
 #---------------------------------------------------------------------------
 # Consolidación Población Académica
 #----------------------------------------------------------------------------
 
-
-
-def consolidar_universo_academico(
+def consolidar_estados_calac(
     df_bajas: pd.DataFrame,
     df_graduados: pd.DataFrame,
     df_activos: pd.DataFrame,
     col_orden : list
 ) -> pd.DataFrame:
     """
-    Concatena los tres estados académicos y normaliza indicadores.
+    Consolida los estados académicos (bajas, grados, activos) en un universo único estructurado.
+
+    Lógica:
+    1. Concatena verticalmente los dataframes de bajas, graduados y activos.
+    2. Normaliza indicadores binarios (engi, ai, di, gi) eliminando nulos.
+    3. Calcula la métrica de censura (ci) como suma de éxito y rezago.
+    4. Reorganiza las columnas según el orden lógico definido en los parámetros.
+
+    Args:
+        df_bajas, df_graduados, df_activos: Dataframes procesados por estado.
+        col_orden: Lista con el orden jerárquico de columnas (desde el YAML).
+
+    Returns:
+        pd.DataFrame: Sábana maestra integrada y tipificada.
     """
     # 1. Unimos los tres dataframes
     universo = pd.concat([df_bajas, df_graduados, df_activos], ignore_index=True)

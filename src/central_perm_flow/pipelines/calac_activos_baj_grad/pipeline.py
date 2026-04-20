@@ -8,7 +8,7 @@ from kedro.pipeline import Node, Pipeline, node, pipeline
 from .nodes import momento_baja,\
                    momento_grado,\
                    momento_activos,\
-                   consolidar_universo_academico
+                   consolidar_estados_calac
 
 
 
@@ -62,15 +62,15 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="nodo_momento_activos",
             ),
             node(
-            func=consolidar_universo_academico,
+            func=consolidar_estados_calac,
             inputs=[
                 "central_bajas_calendario_academico",
                 "central_graduados_calendario_academico",
                 "central_activos_calendario",
                 "params:orden_columnas_universo",
             ],
-            outputs="central_universo_calendario_academico",
-            name="nodo_consolidacion_universo"
+            outputs="central_estados_calac",
+            name="nodo_consolidar_estados_calac"
         ),
     ]
     )
