@@ -94,9 +94,23 @@ cascadas_semanal_podada_censuras:
     index: False
     engine: openpyxl  # Recomendado para manejar archivos .xlsx modernos
 
-central_tabla_vida:
+# Catalog.yml
+lifetables_programa.central_tabla_vida:
   type: pandas.ExcelDataset
-  filepath: data/08_reporting/central_tabla_vida.xlsx
-  save_args:
-    index: False
-    engine: openpyxl
+  filepath: data/08_reporting/central_tabla_vida_programa.xlsx
+  save_args: {index: False}
+
+lifetables_nivel.central_tabla_vida:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/central_tabla_vida_nivel.xlsx
+  save_args: {index: False}
+
+lifetables_nivel_academico.central_tabla_vida:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/central_tabla_vida_nivel_academico.xlsx
+  save_args: {index: False}
+
+lifetables_cohorte.central_tabla_vida:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/central_tabla_vida_cohorte.xlsx
+  save_args: {index: False}
