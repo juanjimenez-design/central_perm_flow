@@ -25,3 +25,47 @@ central_caracterizacion_params:
   # Columnas para ordenar antes de eliminar duplicados
   col_sort:
     - identidad
+    
+  params_columnas_caracterizacion:
+    - matricula
+    - id_alumno
+    -	tipo_identidad
+    - identiddad
+    - primer_nombre
+    - segundo_nombre
+    - apellido_paterno
+    - apellido_materno
+    - genero
+    - fecha_nacimiento
+    - correo
+    - telefono_movil
+    - telefono_casa
+    - tipo_alumno
+    - codigo_programa
+    - programa
+    - pais_de_nacimiento
+    - departamento_nacimiento
+    - departamento_nacimiento_extranjero
+    - municipio_nacimiento
+    - etnia
+    - discapacidad'
+    - pais_residencia
+    - departamento_residencia
+    - departamento_residencia_extranjero
+    - municipio_residencia
+    - municipio_residencia_extranjero
+    - direccion
+    - estrato_social
+    - colegio_procedencia
+    - fecha_culminacion_bachillerato
+    - tipo_documento_presento_el_icfes
+    - trabaja_actualmente
+    - titulo_profesional_pregrado
+    - ano_de_graduacion
+    - universidad_que_titula
+    - _ha_cursado_posgrados_adicionales_
+    - titulo_obtenido
+    - fecha_graduacion
+    - universidad_que_otorga_el_titulo
+    - _ha_cursado_posgrados_en_la_universidad_central_
+    - _cual_    

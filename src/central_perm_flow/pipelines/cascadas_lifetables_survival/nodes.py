@@ -163,7 +163,7 @@ def calcular_censuras_academica(df: pd.DataFrame, id_cols: list) -> pd.DataFrame
             pd.DataFrame: Dataset con ni recalculado y ci asignado al cierre de la observación.
     """
     # 1. Asegurar orden cronológico estricto
-    df = df.sort_values(by=id_cols + ['semana_acumulada'])
+    df = df.sort_values(by=id_cols + [ 'semana_acumulada'])
 
     # 2. Identificar el último punto observado en la data para cada estudiante/programa
     # (Esto captura tanto a los que terminaron por 'poda' como a los que llegan a hoy)
@@ -245,7 +245,7 @@ def calcular_km_y_eti_dinamico(
     )
 
     # 2. Ordenar cronológicamente
-    df_agrupado = df_agrupado.sort_values(by=group_cols + ['semana_acumulada'])
+    df_agrupado = df_agrupado.sort_values(by=group_cols + ['fecha_inicio','fecha_fin','semana_acumulada'])
 
     # 3. n_total dinámico
     # Si agrupamos por 'programa', sumamos los máximos de cada cohorte (si existieran)
@@ -303,7 +303,7 @@ def calcular_km_y_eti_dinamico(
 
     # Selección final de columnas
     cols_finales = group_cols + [
-        'semana_acumulada','nuevos', 'n_total', 'ni', 'di','di_cum', 'gi', 'gi_cum', 'engi', 'ci','ci_cum', 'ai', 
+        'fecha_inicio','fecha_fin','semana_acumulada','nuevos', 'n_total', 'ni', 'ai','di','di_cum', 'gi', 'gi_cum', 'engi', 'ci','ci_cum',
         'qi', 'pi', 'km', 'km_se', 'km_ic_inf', 'km_ic_sup', 'eti'
     ]
     
