@@ -29,8 +29,8 @@ central_caracterizacion_params:
   params_columnas_caracterizacion:
     - matricula
     - id_alumno
-    -	tipo_identidad
-    - identiddad
+    - tipo_identidad
+    - identidad
     - primer_nombre
     - segundo_nombre
     - apellido_paterno
@@ -42,13 +42,12 @@ central_caracterizacion_params:
     - telefono_casa
     - tipo_alumno
     - codigo_programa
-    - programa
     - pais_de_nacimiento
     - departamento_nacimiento
     - departamento_nacimiento_extranjero
     - municipio_nacimiento
     - etnia
-    - discapacidad'
+    - discapacidad
     - pais_residencia
     - departamento_residencia
     - departamento_residencia_extranjero
@@ -68,4 +67,4 @@ central_caracterizacion_params:
     - fecha_graduacion
     - universidad_que_otorga_el_titulo
     - _ha_cursado_posgrados_en_la_universidad_central_
-    - _cual_    
+    - _cual_

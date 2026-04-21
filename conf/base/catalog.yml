@@ -83,6 +83,13 @@ central_estados_calac:
     index: False
     engine: openpyxl 
 
+central_estados_calac_crt:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/central_estados_calac_crt.xlsx
+  save_args:
+    index: False
+    engine: openpyxl    
+
 ## --------------------------------------------------------------------
 ## 8 Reporting
 ## --------------------------------------------------------------------
@@ -95,22 +102,22 @@ cascadas_semanal_podada_censuras:
     engine: openpyxl  # Recomendado para manejar archivos .xlsx modernos
 
 # Catalog.yml
-lifetables_programa.central_tabla_vida:
+lifetables_programa.central_tabla_vida_semanal:
   type: pandas.ExcelDataset
   filepath: data/08_reporting/central_tabla_vida_programa.xlsx
   save_args: {index: False}
 
-lifetables_nivel.central_tabla_vida:
+lifetables_nivel.central_tabla_vida_semanal:
   type: pandas.ExcelDataset
   filepath: data/08_reporting/central_tabla_vida_nivel.xlsx
   save_args: {index: False}
 
-lifetables_nivel_academico.central_tabla_vida:
+lifetables_nivel_academico.central_tabla_vida_semanal:
   type: pandas.ExcelDataset
   filepath: data/08_reporting/central_tabla_vida_nivel_academico.xlsx
   save_args: {index: False}
 
-lifetables_cohorte.central_tabla_vida:
+lifetables_cohorte.central_tabla_vida_semanal:
   type: pandas.ExcelDataset
   filepath: data/08_reporting/central_tabla_vida_cohorte.xlsx
   save_args: {index: False}

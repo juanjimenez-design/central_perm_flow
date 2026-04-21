@@ -8,9 +8,10 @@ def create_pipeline(**kwargs) -> Pipeline:
             func=calcular_km_y_eti_dinamico,
             inputs={
                 "df": "cascadas_semanal_podada_censuras",
+                "unidades_tiempo": "params:unidades_tiempo" ,# Nombre relativo al namespace
                 "group_cols": "params:group_columnas_agrupacion" # Nombre relativo al namespace
             },
-            outputs="central_tabla_vida", # Nombre relativo al namespace
+            outputs="central_tabla_vida_semanal", # Nombre relativo al namespace
             name="nodo_calculo_km_eti",
         )
     ])

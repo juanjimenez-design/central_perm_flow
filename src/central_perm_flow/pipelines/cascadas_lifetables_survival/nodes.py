@@ -197,6 +197,7 @@ def calcular_censuras_academica(df: pd.DataFrame, id_cols: list) -> pd.DataFrame
 def calcular_km_y_eti_dinamico(
     df: pd.DataFrame, 
     group_cols: list, 
+    unidades_tiempo:list,
     conf_z: float = 1.96
 ) -> tuple:
     """
@@ -232,7 +233,7 @@ def calcular_km_y_eti_dinamico(
     # Para ai, usamos sum() porque representa el stock de esa semana
     # Para di, gi, engi, ci, usamos sum() para consolidar eventos de la semana
     df_agrupado = (
-        df.groupby(group_cols + ['semana_acumulada'])
+        df.groupby(group_cols + unidades_tiempo)
         .agg({
             'ai': 'sum',
             'di': 'sum',
@@ -245,7 +246,7 @@ def calcular_km_y_eti_dinamico(
     )
 
     # 2. Ordenar cronológicamente
-    df_agrupado = df_agrupado.sort_values(by=group_cols + ['fecha_inicio','fecha_fin','semana_acumulada'])
+    df_agrupado = df_agrupado.sort_values(by=group_cols + unidades_tiempo)
 
     # 3. n_total dinámico
     # Si agrupamos por 'programa', sumamos los máximos de cada cohorte (si existieran)
@@ -302,8 +303,7 @@ def calcular_km_y_eti_dinamico(
     df_agrupado['gi_cum'] =  grouped['gi'].transform(lambda x: x.cumsum().shift(0).fillna(0))
 
     # Selección final de columnas
-    cols_finales = group_cols + [
-        'fecha_inicio','fecha_fin','semana_acumulada','nuevos', 'n_total', 'ni', 'ai','di','di_cum', 'gi', 'gi_cum', 'engi', 'ci','ci_cum',
+    cols_finales = group_cols + unidades_tiempo + ['nuevos', 'n_total', 'ni', 'ai','di','di_cum', 'gi', 'gi_cum', 'engi', 'ci','ci_cum',
         'qi', 'pi', 'km', 'km_se', 'km_ic_inf', 'km_ic_sup', 'eti'
     ]
     
