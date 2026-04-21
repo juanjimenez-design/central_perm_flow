@@ -412,3 +412,46 @@ def crear_cascada_supervivencia(
     return cascadas_semanal_final.loc[:, params['columnas_tokeep']]
 
 
+# Mensual
+
+def crear_cascada_supervivencia_mensual(df: pd.DataFrame, 
+                                        group_columns: list):
+    """
+        Consolida la granularidad temporal de las cascadas de semanal a mensual.
+
+        Este nodo realiza una reducción de datos aplicando una lógica de agregación 
+        heterogénea basada en la naturaleza de cada indicador:
+        - Límites temporales: Preserva el rango mediante 'min' y 'max'.
+        - Indicadores de estado (Stock): Mantiene niveles críticos usando 'min' y 'max'.
+        - Variables de flujo (Acumulados): Totaliza volúmenes mediante 'sum'.
+
+        Args:
+            df (pd.DataFrame): Dataset de cascadas con granularidad semanal.
+            group_columns (list): Columnas de agrupación (ej. IDs, dimensiones y 
+                                la referencia temporal mensual).
+
+        Returns:
+            pd.DataFrame: Resumen mensual con las métricas consolidadas e índice reseteado.
+    """
+    
+    # Definición del diccionario de agregación
+    agg_rules = {
+        'fecha_inicio': 'min',
+        'fecha_fin': 'max',
+        'nuevos': 'max',
+        'ai': 'min',
+        'di': 'sum',
+        'gi': 'sum',
+        'engi': 'sum',
+        'ci': 'sum'
+    }
+    
+    # Ejecución de la lógica
+    df_result = (
+        df
+        .groupby(group_columns)
+        .agg(agg_rules)
+        .reset_index()
+    )
+    
+    return df_result

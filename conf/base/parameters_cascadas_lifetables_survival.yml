@@ -1,6 +1,9 @@
 # parameters/survival_analysis.yml
 
 # Parámetros globales para el primer nodo (crear_cascada_supervivencia)
+#-------------------------------------------------------------------------------
+# Semanal
+#-------------------------------------------------------------------------------
 survival:
   columnas_agrupacion:
     - cohorte_inicial
@@ -61,9 +64,7 @@ survival:
       derecho: { semanas: 144, meses: 36, bloques: 18, periodos: 9 }
 
 # --- Parámetros para los Namespaces (Nodo calcular_km_y_eti_dinamico) ---
-#-------------------------------------------------------------------------------
-# Semanal
-#-------------------------------------------------------------------------------
+
 lifetables_programa: 
   group_columnas_agrupacion:
     - cohorte_inicial
@@ -106,3 +107,60 @@ lifetables_cohorte:
     - 'fecha_inicio'
     - 'fecha_fin' 
     - 'semana_acumulada'
+
+
+#-------------------------------------------------------------------------------
+# Mensual
+#-------------------------------------------------------------------------------
+survival_mensual:
+  group_columnas_agrupacion: 
+    - 'cohorte_inicial'
+    - 'fecha_ingreso'
+    - 'nivel_academico'
+    - 'nivel'
+    - 'programa'
+    - 'month'
+    - 'mes_academico'
+        
+lifetables_mensuales_programa: 
+  group_columnas_agrupacion:
+    - cohorte_inicial
+    - fecha_ingreso
+    - nivel_academico
+    - nivel
+    - programa
+  unidades_tiempo:   
+    - 'fecha_inicio'
+    - 'fecha_fin' 
+    - 'month'
+  
+
+lifetables_mensuales_nivel: 
+  group_columnas_agrupacion:
+    - cohorte_inicial
+    - fecha_ingreso
+    - nivel_academico
+    - nivel
+  unidades_tiempo:   
+    - 'fecha_inicio'
+    - 'fecha_fin' 
+    - 'month'
+
+lifetables_mensuales_nivel_academico: 
+  group_columnas_agrupacion:
+    - cohorte_inicial
+    - fecha_ingreso
+    - nivel_academico
+  unidades_tiempo:   
+    - 'fecha_inicio'
+    - 'fecha_fin' 
+    - 'month'
+
+lifetables_mensuales_cohorte: 
+  group_columnas_agrupacion:
+    - cohorte_inicial
+    - fecha_ingreso
+  unidades_tiempo:   
+    - 'fecha_inicio'
+    - 'fecha_fin' 
+    - 'month'

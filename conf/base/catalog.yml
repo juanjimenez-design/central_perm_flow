@@ -101,7 +101,14 @@ cascadas_semanal_podada_censuras:
     index: False
     engine: openpyxl  # Recomendado para manejar archivos .xlsx modernos
 
-# Catalog.yml
+cascadas_mensual_podada_censuras:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/cascadas_mensual_podada_censuras.xlsx
+  save_args:
+    index: False
+    engine: openpyxl  # Recomendado para manejar archivos .xlsx modernos    
+
+# Semanales
 lifetables_programa.central_tabla_vida_semanal:
   type: pandas.ExcelDataset
   filepath: data/08_reporting/central_tabla_vida_programa.xlsx
@@ -119,5 +126,26 @@ lifetables_nivel_academico.central_tabla_vida_semanal:
 
 lifetables_cohorte.central_tabla_vida_semanal:
   type: pandas.ExcelDataset
-  filepath: data/08_reporting/central_tabla_vida_cohorte.xlsx
+  filepath: data/08_reporting/central_mensual_tabla_vida_cohorte.xlsx
+  save_args: {index: False}
+
+# Mensuales
+lifetables_mensuales_programa.central_tabla_vida_mensual:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/central_mensual_tabla_vida_programa.xlsx
+  save_args: {index: False}
+
+lifetables_mensuales_nivel.central_tabla_vida_mensual:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/central_mensual_tabla_vida_nivel.xlsx
+  save_args: {index: False}
+
+lifetables_mensuales_nivel_academico.central_mensual_tabla_vida_mensual:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/central_mensual_tabla_vida_nivel_academico.xlsx
+  save_args: {index: False}
+
+lifetables_mensuales_cohorte.central_tabla_vida_mensual:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/central_mensual_tabla_vida_cohorte.xlsx
   save_args: {index: False}
