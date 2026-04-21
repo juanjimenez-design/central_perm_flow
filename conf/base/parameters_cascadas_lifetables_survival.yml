@@ -3,3 +3,64 @@
 #
 # Documentation for this file format can be found in "Parameters"
 # Link: https://docs.kedro.org/en/1.2.0/configuration/parameters.html
+
+
+# parameters/survival_analysis.yml
+
+survival:
+  columnas_agrupacion:
+    - cohorte_inicial
+    - fecha_ingreso
+    - nivel_academico
+    - nivel
+    - programa
+    - fecha_inicio
+    - fecha_fin
+    - semana
+    - semana_acumulada
+    - month
+    - mes_academico
+    - student_journey
+
+  columnas_to_order:
+    - fecha_ingreso
+    - month
+    - fecha_inicio
+    - fecha_fin
+
+  group_columnas_agrupacion:
+    - cohorte_inicial
+    - fecha_ingreso
+    - nivel_academico
+    - nivel
+    - programa
+
+  columnas_tokeep:
+    - cohorte_inicial
+    - fecha_ingreso
+    - nivel_academico
+    - nivel
+    - programa
+    - fecha_inicio
+    - fecha_fin
+    - semana
+    - semana_acumulada
+    - semana_limite
+    - month
+    - mes_academico
+    - nuevos
+    - ai
+    - di
+    - gi
+    - engi
+    - ci
+
+  dict_niveles_duracion:
+      maestria:
+        default: { semanas: 48, meses: 12, bloques: 6, periodos: 3 }
+        analitica de datos: { semanas: 64, meses: 16, bloques: 8, periodos: 4 }
+      especializacion:
+        default: { semanas: 32, meses: 8, bloques: 4, periodos: 2 }
+      pregrado:
+        default: { semanas: 128, meses: 32, bloques: 16, periodos: 8 }
+        derecho: { semanas: 144, meses: 36, bloques: 18, periodos: 9 }

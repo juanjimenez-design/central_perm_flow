@@ -77,5 +77,26 @@ central_activos_calendario:
     index: false
 
 central_estados_calac:
-  type: pandas.ParquetDataset
-  filepath: data/04_feature/central_estados_calac.parquet
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/central_estados_calac.xlsx
+  save_args:
+    index: False
+    engine: openpyxl 
+
+## --------------------------------------------------------------------
+## 8 Reporting
+## --------------------------------------------------------------------
+
+cascadas_semanal_podada_censuras:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/cascadas_semanal_podada_censuras.xlsx
+  save_args:
+    index: False
+    engine: openpyxl  # Recomendado para manejar archivos .xlsx modernos
+
+central_tabla_vida:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/central_tabla_vida.xlsx
+  save_args:
+    index: False
+    engine: openpyxl
