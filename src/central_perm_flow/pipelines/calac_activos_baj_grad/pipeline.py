@@ -21,7 +21,7 @@ def create_pipeline(**kwargs) -> Pipeline:
                 "central_col_fechadef": "params:bajas_calac.central_col_fechadef",
                 "central_col_fechatemp": "params:bajas_calac.central_col_fechatemp",
                 "dict_duracion": "params:graduados_calac.dict_niveles_duracion",
-                "central_calaca": "central_calendario_extendido",
+                "central_calaca": "central_calendario_extendido_uptoday",
                 "fallback_weeks": "params:graduados_calac.graduation_fallback_weeks",
                 "left_on": "params:bajas_calac.merge_left_on", # 'fecha_baja'
                 "right_on": "params:bajas_calac.merge_right_on", # 'fecha_inicio'
@@ -35,7 +35,7 @@ def create_pipeline(**kwargs) -> Pipeline:
                 func=momento_grado,
                 inputs={
                     "central_estaca": "central_estaca_sd",
-                    "central_calaca": "central_calendario_extendido",
+                    "central_calaca": "central_calendario_extendido_uptoday",
                     "dict_duracion": "params:graduados_calac.dict_niveles_duracion",
                     "col_gi": "params:graduados_calac.graduation_col_gi",
                     "fallback_weeks": "params:graduados_calac.graduation_fallback_weeks",
@@ -49,7 +49,7 @@ def create_pipeline(**kwargs) -> Pipeline:
                 func=momento_activos,
                 inputs={
                     "central_estaca": "central_estaca_sd",              # Dataset maestro
-                    "central_calaca": "central_calendario_extendido",   # Maestro calendario
+                    "central_calaca": "central_calendario_extendido_uptoday",   # Maestro calendario
                     "dict_duracion": "params:graduados_calac.dict_niveles_duracion", # Reutilizamos dict
                     "col_di": "params:activos_calac.col_di",            # 'di'
                     "col_gi": "params:activos_calac.col_gi",            # 'gi'

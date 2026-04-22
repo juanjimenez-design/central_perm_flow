@@ -140,7 +140,7 @@ lifetables_mensuales_nivel.central_tabla_vida_mensual:
   filepath: data/08_reporting/central_mensual_tabla_vida_nivel.xlsx
   save_args: {index: False}
 
-lifetables_mensuales_nivel_academico.central_mensual_tabla_vida_mensual:
+lifetables_mensuales_nivel_academico.central_tabla_vida_mensual:
   type: pandas.ExcelDataset
   filepath: data/08_reporting/central_mensual_tabla_vida_nivel_academico.xlsx
   save_args: {index: False}
