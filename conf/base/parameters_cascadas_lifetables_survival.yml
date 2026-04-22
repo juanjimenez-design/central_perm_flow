@@ -181,6 +181,4 @@ lifetables_mensuales_alianza:
   group_columnas_agrupacion:
     - alianza
   unidades_tiempo:   
-    - 'fecha_inicio'
-    - 'fecha_fin' 
     - 'month'
