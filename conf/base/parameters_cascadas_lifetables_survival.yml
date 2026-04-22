@@ -6,6 +6,7 @@
 #-------------------------------------------------------------------------------
 survival:
   columnas_agrupacion:
+    - alianza
     - cohorte_inicial
     - fecha_ingreso
     - nivel_academico
@@ -20,6 +21,7 @@ survival:
     - student_journey
   
   group_columnas_agrupacion:
+    - alianza
     - cohorte_inicial
     - fecha_ingreso
     - nivel_academico
@@ -34,6 +36,7 @@ survival:
     - fecha_fin
 
   columnas_tokeep:
+    - alianza
     - cohorte_inicial
     - fecha_ingreso
     - nivel_academico
@@ -67,6 +70,7 @@ survival:
 
 lifetables_programa: 
   group_columnas_agrupacion:
+    - alianza
     - cohorte_inicial
     - fecha_ingreso
     - nivel_academico
@@ -80,6 +84,7 @@ lifetables_programa:
 
 lifetables_nivel: 
   group_columnas_agrupacion:
+    - alianza
     - cohorte_inicial
     - fecha_ingreso
     - nivel_academico
@@ -91,6 +96,7 @@ lifetables_nivel:
 
 lifetables_nivel_academico: 
   group_columnas_agrupacion:
+    - alianza
     - cohorte_inicial
     - fecha_ingreso
     - nivel_academico
@@ -101,6 +107,7 @@ lifetables_nivel_academico:
 
 lifetables_cohorte: 
   group_columnas_agrupacion:
+    - alianza
     - cohorte_inicial
     - fecha_ingreso
   unidades_tiempo:   
@@ -114,6 +121,7 @@ lifetables_cohorte:
 #-------------------------------------------------------------------------------
 survival_mensual:
   group_columnas_agrupacion: 
+    - alianza
     - 'cohorte_inicial'
     - 'fecha_ingreso'
     - 'nivel_academico'
@@ -124,6 +132,7 @@ survival_mensual:
         
 lifetables_mensuales_programa: 
   group_columnas_agrupacion:
+    - alianza
     - cohorte_inicial
     - fecha_ingreso
     - nivel_academico
@@ -137,6 +146,7 @@ lifetables_mensuales_programa:
 
 lifetables_mensuales_nivel: 
   group_columnas_agrupacion:
+    - alianza
     - cohorte_inicial
     - fecha_ingreso
     - nivel_academico
@@ -148,6 +158,7 @@ lifetables_mensuales_nivel:
 
 lifetables_mensuales_nivel_academico: 
   group_columnas_agrupacion:
+    - alianza
     - cohorte_inicial
     - fecha_ingreso
     - nivel_academico
@@ -158,8 +169,17 @@ lifetables_mensuales_nivel_academico:
 
 lifetables_mensuales_cohorte: 
   group_columnas_agrupacion:
+    - alianza
     - cohorte_inicial
     - fecha_ingreso
+  unidades_tiempo:   
+    - 'fecha_inicio'
+    - 'fecha_fin' 
+    - 'month'
+
+lifetables_mensuales_alianza: 
+  group_columnas_agrupacion:
+    - alianza
   unidades_tiempo:   
     - 'fecha_inicio'
     - 'fecha_fin' 

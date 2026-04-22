@@ -149,3 +149,9 @@ lifetables_mensuales_cohorte.central_tabla_vida_mensual:
   type: pandas.ExcelDataset
   filepath: data/08_reporting/central_mensual_tabla_vida_cohorte.xlsx
   save_args: {index: False}
+
+
+lifetables_mensuales_alianza.central_tabla_vida_mensual:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/central_mensual_tabla_vida_alianza.xlsx
+  save_args: {index: False}

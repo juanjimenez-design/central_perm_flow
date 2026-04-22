@@ -232,6 +232,7 @@ def calcular_km_y_eti_dinamico(
     # Para 'nuevos', usamos max() porque el valor es constante por cohorte
     # Para ai, usamos sum() porque representa el stock de esa semana
     # Para di, gi, engi, ci, usamos sum() para consolidar eventos de la semana
+    print(df.columns)
     df_agrupado = (
         df.groupby(group_cols + unidades_tiempo)
         .agg({
