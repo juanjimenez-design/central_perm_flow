@@ -140,7 +140,7 @@ def aplicar_logica_semana_final(df, dict_niveles):
     # Asignamos engi = estudiantes_activos donde se cumple la condición
     df.loc[mask, 'engi'] = df.loc[mask, 'ai']
     # Asignamos 0 a los ai de cuando se cumple la condición
-    df.loc[mask, 'engi'] = df.loc[mask, 'ai']
+    df.loc[mask, 'ai'] = 0
     
     # Opcional: Eliminar la columna auxiliar para dejar el DF limpio
     # df.drop(columns=['semana_limite'], inplace=True)
@@ -250,7 +250,7 @@ def calcular_km_y_eti_dinamico(
 
     # 4. Cálculo de ni (En riesgo)
     # n_i = activos_final + censuras_final + bajas_final
-    df_agrupado['ni'] = df_agrupado['ai'] + df_agrupado['ci'] + df_agrupado['di']
+    df_agrupado['ni'] = df_agrupado['ai'].shift(1).fillna(df['nuevos']) #+ df_agrupado['ci'] + df_agrupado['di']
     df_agrupado['ni'] = df_agrupado['ni'].clip(lower=0)
 
     # 5. Agrupación para métricas de probabilidad
