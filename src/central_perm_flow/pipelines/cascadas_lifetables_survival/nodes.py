@@ -137,7 +137,9 @@ def aplicar_logica_semana_final(df, dict_niveles):
     # Nota: Uso 'semana_acumulada' porque suele ser el indicador del progreso total.
     mask = df['semana_acumulada'] >= df['semana_limite']
     
-    # Asignamos ci = estudiantes_activos donde se cumple la condición
+    # Asignamos engi = estudiantes_activos donde se cumple la condición
+    df.loc[mask, 'engi'] = df.loc[mask, 'ai']
+    # Asignamos 0 a los ai de cuando se cumple la condición
     df.loc[mask, 'engi'] = df.loc[mask, 'ai']
     
     # Opcional: Eliminar la columna auxiliar para dejar el DF limpio
@@ -171,20 +173,12 @@ def calcular_censuras_academica(df: pd.DataFrame, id_cols: list) -> pd.DataFrame
         df.groupby(id_cols)['semana_acumulada'].transform('max') == df['semana_acumulada']
     )
 
-    # 3. ni (En Riesgo): Ya lo calculamos como el valor al inicio de la semana.
-    # Si por alguna razón no viene en el DF, ni es el 'ai' del periodo anterior.
-    # (Asumimos que ya tienes 'ni' del paso anterior, si no, descomenta la siguiente línea)
+    # 3. ni (En Riesgo): Son los activos de la unidad de tiempo anterior
     df['ni'] = df.groupby(id_cols)['ai'].shift(1).fillna(df['nuevos'])
 
-    # 4. di (Eventos - Bajas):
-    # Usamos el 'di' que ya calculaste (conteo de identificaciones con baja).
-    # IMPORTANTE: En el último punto observado, no registramos bajas nuevas 
-    # porque no podemos confirmar si ocurrió el evento o se acabó el tiempo de observación.
-    #df['di_final'] = np.where(~df['es_ultimo_punto'], df['di'], 0)
-
-    # 5. ci (Censuras):
+    # 4. ci (Censuras):
     # Son los estudiantes que permanecen activos (ai) en el último punto 
-    # observado del dataset. 
+    # observado del dataset o los graduados
     df['ci'] = np.where(df['es_ultimo_punto'], df['ai'] + df['gi'], 0)
 
     # 6. Limpieza y preparación final
@@ -232,7 +226,7 @@ def calcular_km_y_eti_dinamico(
     # Para 'nuevos', usamos max() porque el valor es constante por cohorte
     # Para ai, usamos sum() porque representa el stock de esa semana
     # Para di, gi, engi, ci, usamos sum() para consolidar eventos de la semana
-    print(df.columns)
+    #print(df.columns)
     df_agrupado = (
         df.groupby(group_cols + unidades_tiempo)
         .agg({

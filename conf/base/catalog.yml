@@ -105,50 +105,56 @@ cascadas_mensual_podada_censuras:
     index: False
     engine: openpyxl  # Recomendado para manejar archivos .xlsx modernos    
 
-# Semanales
-lifetables_programa.central_tabla_vida_semanal:
+# semanal
+lifetables_semanal_programa.central_tabla_vida_semanal:
   type: pandas.ExcelDataset
-  filepath: data/08_reporting/central_tabla_vida_programa.xlsx
+  filepath: data/08_reporting/central_semanal_tabla_vida_programa.xlsx
   save_args: {index: False}
 
-lifetables_nivel.central_tabla_vida_semanal:
+lifetables_semanal_nivel.central_tabla_vida_semanal:
   type: pandas.ExcelDataset
-  filepath: data/08_reporting/central_tabla_vida_nivel.xlsx
+  filepath: data/08_reporting/central_semanal_tabla_vida_nivel.xlsx
   save_args: {index: False}
 
-lifetables_nivel_academico.central_tabla_vida_semanal:
+lifetables_semanal_nivel_academico.central_tabla_vida_semanal:
   type: pandas.ExcelDataset
-  filepath: data/08_reporting/central_tabla_vida_nivel_academico.xlsx
+  filepath: data/08_reporting/central_semanal_tabla_vida_nivel_academico.xlsx
   save_args: {index: False}
 
-lifetables_cohorte.central_tabla_vida_semanal:
+lifetables_semanal_cohorte.central_tabla_vida_semanal:
   type: pandas.ExcelDataset
-  filepath: data/08_reporting/central_mensual_tabla_vida_cohorte.xlsx
+  filepath: data/08_reporting/central_semanal_tabla_vida_cohorte.xlsx
   save_args: {index: False}
 
-# Mensuales
-lifetables_mensuales_programa.central_tabla_vida_mensual:
+lifetables_semanal_alianza.central_tabla_vida_semanal:
+  type: pandas.ExcelDataset
+  filepath: data/08_reporting/central_semanal_tabla_vida_alianza.xlsx
+  save_args: {index: False}
+
+
+# mensual
+lifetables_mensual_programa.central_tabla_vida_mensual:
   type: pandas.ExcelDataset
   filepath: data/08_reporting/central_mensual_tabla_vida_programa.xlsx
   save_args: {index: False}
 
-lifetables_mensuales_nivel.central_tabla_vida_mensual:
+lifetables_mensual_nivel.central_tabla_vida_mensual:
   type: pandas.ExcelDataset
   filepath: data/08_reporting/central_mensual_tabla_vida_nivel.xlsx
   save_args: {index: False}
 
-lifetables_mensuales_nivel_academico.central_tabla_vida_mensual:
+lifetables_mensual_nivel_academico.central_tabla_vida_mensual:
   type: pandas.ExcelDataset
   filepath: data/08_reporting/central_mensual_tabla_vida_nivel_academico.xlsx
   save_args: {index: False}
 
-lifetables_mensuales_cohorte.central_tabla_vida_mensual:
+lifetables_mensual_cohorte.central_tabla_vida_mensual:
   type: pandas.ExcelDataset
   filepath: data/08_reporting/central_mensual_tabla_vida_cohorte.xlsx
   save_args: {index: False}
 
 
-lifetables_mensuales_alianza.central_tabla_vida_mensual:
+lifetables_mensual_alianza.central_tabla_vida_mensual:
   type: pandas.ExcelDataset
   filepath: data/08_reporting/central_mensual_tabla_vida_alianza.xlsx
   save_args: {index: False}
