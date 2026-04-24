@@ -141,7 +141,6 @@ def aplicar_logica_semana_final(df, dict_niveles):
     df.loc[mask, 'engi'] = df.loc[mask, 'ai']
     # Asignamos 0 a los ai de cuando se cumple la condición
     df.loc[mask, 'ai'] = 0
-    
     # Opcional: Eliminar la columna auxiliar para dejar el DF limpio
     # df.drop(columns=['semana_limite'], inplace=True)
     
@@ -173,13 +172,14 @@ def calcular_censuras_academica(df: pd.DataFrame, id_cols: list) -> pd.DataFrame
         df.groupby(id_cols)['semana_acumulada'].transform('max') == df['semana_acumulada']
     )
 
+    
     # 3. ni (En Riesgo): Son los activos de la unidad de tiempo anterior
     df['ni'] = df.groupby(id_cols)['ai'].shift(1).fillna(df['nuevos'])
 
     # 4. ci (Censuras):
     # Son los estudiantes que permanecen activos (ai) en el último punto 
     # observado del dataset o los graduados
-    df['ci'] = np.where(df['es_ultimo_punto'], df['ai'] + df['gi'], 0)
+    df['ci'] = np.where(df['es_ultimo_punto'], df['ai']  , 0)
 
     # 6. Limpieza y preparación final
     # Eliminamos columnas auxiliares para no ensuciar el catálogo
@@ -250,7 +250,7 @@ def calcular_km_y_eti_dinamico(
 
     # 4. Cálculo de ni (En riesgo)
     # n_i = activos_final + censuras_final + bajas_final
-    df_agrupado['ni'] = df_agrupado['ai'].shift(1).fillna(df['nuevos']) #+ df_agrupado['ci'] + df_agrupado['di']
+    df_agrupado['ni'] = df_agrupado['ai'].shift(1).fillna(df_agrupado['nuevos']) - df_agrupado['ci'].shift(1).fillna(0)
     df_agrupado['ni'] = df_agrupado['ni'].clip(lower=0)
 
     # 5. Agrupación para métricas de probabilidad
@@ -275,7 +275,7 @@ def calcular_km_y_eti_dinamico(
     # 8. ETI (Eficiencia Terminal)
     # gi_engi_prev: Acumulado de ci (que incluye graduados/egresados) hasta la semana anterior
     ci_cum = grouped['ci'].cumsum()
-    gi_engi_prev = grouped['ci'].transform(lambda x: x.cumsum().shift(0).fillna(0))
+    gi_engi_prev = grouped['ci'].transform(lambda x: x.cumsum().shift(1).fillna(0))
     
     df_agrupado['nuevos'] = df_agrupado['n_total']
     denominador_eti = df_agrupado['n_total'] - gi_engi_prev
