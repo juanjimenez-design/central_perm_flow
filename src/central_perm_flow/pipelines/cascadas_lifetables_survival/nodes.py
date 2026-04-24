@@ -301,7 +301,7 @@ def calcular_km_y_eti_dinamico(
     cols_finales = group_cols + unidades_tiempo + ['nuevos', 'n_total', 'ni', 'ai','di','di_cum', 'gi', 'gi_cum', 'engi', 'ci','ci_cum',
         'qi', 'pi', 'km', 'km_se', 'km_ic_inf', 'km_ic_sup', 'eti'
     ]
-    
+    df_agrupado = df_agrupado.sort_values( by = group_cols + unidades_tiempo)
     return df_agrupado[cols_finales].reset_index(drop=True)
 
 #----------------------------------------------------------------------
