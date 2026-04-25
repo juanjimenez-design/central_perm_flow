@@ -249,7 +249,7 @@ def calcular_km_y_eti_dinamico(
     df_agrupado['n_total'] = df_agrupado.groupby(group_cols)['nuevos'].transform('max')
 
     # 4. Cálculo de ni (En riesgo)
-    # n_i = activos_final + censuras_final + bajas_final
+    # n_i = activos_final - censuras
     df_agrupado['ni'] = df_agrupado['ai'].shift(1).fillna(df_agrupado['nuevos']) - df_agrupado['ci'].shift(1).fillna(0)
     df_agrupado['ni'] = df_agrupado['ni'].clip(lower=0)
 
