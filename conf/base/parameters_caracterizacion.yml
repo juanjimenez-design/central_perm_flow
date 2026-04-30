@@ -27,6 +27,7 @@ central_caracterizacion_params:
     
   params_columnas_caracterizacion:
     - id_crm
+    - matricula
     - tipo_identidad
     - identidad
     - primer_nombre
