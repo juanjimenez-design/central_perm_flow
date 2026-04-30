@@ -16,7 +16,6 @@ central_caracterizacion_params:
   # Columnas que contienen correos electrónicos para limpieza de objetos
   col_emails:
     - correo
-    - correo_electronico_del_contacto_emergencia
 
   # Columnas para identificar duplicados (subset)
   col_dd:
@@ -27,8 +26,7 @@ central_caracterizacion_params:
     - identidad
     
   params_columnas_caracterizacion:
-    - matricula
-    - id_alumno
+    - id_crm
     - tipo_identidad
     - identidad
     - primer_nombre
